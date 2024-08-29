@@ -71,7 +71,7 @@ function WorkspaceSwitcher() {
           <div className="size-9 relative overflow-hidden bg-[#F2F2F2] text-slate-800 font-semibold text-xl rounded-md flex items-center justify-center mr-2">
             <PlusIcon />
           </div>
-          Create a new workspace
+          Add a workspace
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

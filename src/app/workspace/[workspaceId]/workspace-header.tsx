@@ -26,7 +26,11 @@ export const WorkspaceHeader = ({
 
   return (
     <>
-      <PreferencesModal />
+      <PreferencesModal
+        open={open}
+        setOpen={setOpen}
+        initialValue={workspace.name}
+      />
       <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -63,7 +67,7 @@ export const WorkspaceHeader = ({
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer py-2"
-                  onClick={() => {}}
+                  onClick={() => setOpen(true)}
                 >
                   Preferences
                 </DropdownMenuItem>

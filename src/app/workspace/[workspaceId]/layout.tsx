@@ -16,11 +16,12 @@ interface WorkspaceIdLayoutProps {
 
 const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-full overflow-hidden bg-[#421347]">
       <Toolbar />
       <div className="flex h-[calc(100vh-38px)] relative">
         <Sidebar />
-        <div className="w-[100%] absolute left-[68px] top-[-2px] h-full">
+        {/* border border-[#704e73] */}
+        <div className="w-[calc(100%-73px)] absolute left-[68px] top-0 h-[calc(100%-7px)] rounded-lg ">
           <ResizablePanelGroup
             className="rounded-md"
             direction="horizontal"
@@ -33,7 +34,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
             >
               <WorkspaceSidebar />
             </ResizablePanel>
-            <ResizableHandle withHandle />
+            <ResizableHandle className="bg-[#704e73]" withHandle />
             <ResizablePanel minSize={20}> {children}</ResizablePanel>
           </ResizablePanelGroup>
         </div>
