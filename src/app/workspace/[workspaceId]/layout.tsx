@@ -21,7 +21,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
       <div className="flex h-[calc(100vh-38px)] relative">
         <Sidebar />
         {/* border border-[#704e73] */}
-        <div className="w-[calc(100%-73px)] absolute left-[68px] top-0 h-[calc(100%-7px)] rounded-lg ">
+        <div className="w-[calc(100%-73px)] absolute bg-red-500 left-[68px] top-0 h-[calc(100%-7px)] rounded-[11px] ">
           <ResizablePanelGroup
             className="rounded-md"
             direction="horizontal"
@@ -30,7 +30,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
             <ResizablePanel
               defaultSize={20}
               minSize={11}
-              className="bg-[#5E2C5F]"
+              className="bg-[#5E2C5F] rounded-l-lg"
             >
               <WorkspaceSidebar />
             </ResizablePanel>
