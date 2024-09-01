@@ -9,7 +9,7 @@ import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import VerificationInput from "react-verification-input";
 import { toast } from "sonner";
 
@@ -18,6 +18,14 @@ const JoinPage = () => {
   const workspaceId = useWorkspaceId();
   const { data, isLoading } = useGetWorkspaceInfo({ id: workspaceId });
   const { mutate, isPending } = useJoin();
+
+  const isMember = useMemo(() => data?.isMember, [data?.isMember]);
+
+  useEffect(() => {
+    if (isMember) {
+      router.push(`/workspace/${workspaceId}`);
+    }
+  }, [isMember, router, workspaceId]);
 
   const handleComplete = (value: string) => {
     mutate(
