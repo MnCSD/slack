@@ -2,6 +2,40 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
+export const remove = mutation({
+  args: {
+    id: v.id("channels"),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+
+    if (!userId) {
+      throw new Error("User not authenticated");
+    }
+
+    const channel = await ctx.db.get(args.id);
+
+    if (!channel) {
+      throw new Error("Channel not found");
+    }
+
+    const member = await ctx.db
+      .query("members")
+      .withIndex("by_workspace_id_user_id", (q) =>
+        q.eq("workspaceId", channel.workspaceId).eq("userId", userId)
+      )
+      .unique();
+
+    if (!member || member.role !== "admin") {
+      throw new Error("User is not an admin of this workspace");
+    }
+
+    await ctx.db.delete(args.id);
+
+    return args.id;
+  },
+});
+
 export const update = mutation({
   args: {
     id: v.id("channels"),

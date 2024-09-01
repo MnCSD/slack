@@ -10,10 +10,12 @@ import {
 import { useCurrentUser } from "../api/use-current-user";
 import { Loader, LogOut } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { useRouter } from "next/navigation";
 
 export const UserButton = () => {
   const { signOut } = useAuthActions();
   const { data, isLoading } = useCurrentUser();
+  const router = useRouter();
 
   if (isLoading) {
     return <Loader className="animate-spin size-4 text-muted-foreground" />;
@@ -24,8 +26,6 @@ export const UserButton = () => {
   }
 
   const { name, image } = data;
-
-  console.log(name);
 
   const avatarFallback = name!.charAt(0).toUpperCase();
 
@@ -42,6 +42,7 @@ export const UserButton = () => {
         <DropdownMenuItem
           onClick={() => {
             signOut();
+            router.push("/auth");
           }}
           className="h-10"
         >
